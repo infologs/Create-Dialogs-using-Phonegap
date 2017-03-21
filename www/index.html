@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">        
+        <title>Hello World</title>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script>
+            document.addEventListener("deviceready", onDeviceReady, false);
+
+            function onDeviceReady() {
+                console.log("cordova loaded successfully....");
+            }
+            function ShowAlert() {
+                navigator.notification.alert("This is the alert from phonegap application.", null, "Information", "OK");
+            }
+
+            function ShowConfirm() {
+                navigator.notification.confirm("Are you sure want to?", confirmCallback, "Confirmation", ["Yes", "NO"]);
+            }
+
+            function confirmCallback(btnIndex) {
+                if(btnIndex == 1) {
+                    navigator.notification.alert("You have selected 'YES' option.", null, "Information", "OK");
+                } else {
+                    navigator.notification.alert("You have selected 'NO' option", null, "Information", "OK");
+                }                
+            }
+
+            function ShowPrompt() {
+                navigator.notification.prompt("Enter leave reason.", function(callbackDetails){
+                    navigator.notification.alert("Entered value is : " + callbackDetails.input1, null, "Information", "OK");
+                }, "Leave Reason", "OK", "");               
+            }
+        </script>
+    </head>
+    <body>
+        <div>
+            <input type="button" value="Show Alert" onclick="ShowAlert()">
+            <input type="button" value="Show Confirm" onclick="ShowConfirm()">
+            <input type="button" value="Show Prompt" onclick="ShowPrompt()">
+        </div>
+    </body>
+</html>
